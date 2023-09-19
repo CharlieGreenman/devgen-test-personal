@@ -1,0 +1,29 @@
+{
+  "name": "devgen-test-personal-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/devgen-test-personal-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/devgen-test-personal-e2e/cypress.json",
+        "devServerTarget": "devgen-test-personal:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "devgen-test-personal:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/devgen-test-personal-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["devgen-test-personal"]
+}
